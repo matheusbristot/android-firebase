@@ -4,30 +4,76 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.2"
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    compileSdkVersion rootProject.ext.target_version
+    buildToolsVersion rootProject.ext.build_version
+
     defaultConfig {
         applicationId "matheusbristot.firebaseandroid"
-        minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        minSdkVersion rootProject.ext.min_sdk_version
+        targetSdkVersion rootProject.ext.target_version
+        versionCode rootProject.ext.version_code
+        versionName rootProject.ext.version_name
+        multiDexEnabled true
     }
+
+    dataBinding {
+        enabled = true
+    }
+
     buildTypes {
+
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            resValue "string", "app_name", "\"$app_name\""
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        staging {
+            applicationIdSuffix ".staging"
+            resValue "string", "app_name", "\"$app_name [staging]\""
+        }
+
+        debug {
+            applicationIdSuffix ".debug"
+            resValue "string", "app_name", "\"$app_name [debug]\""
         }
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Android Support
+    implementation "com.android.support:appcompat-v7:$support_version"
+    implementation "com.android.support.constraint:constraint-layout:$constraint_layout_version"
+    implementation "com.android.support:design:$support_version"
+
+    // ViewModel and LiveData
+    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+
+    // Firebase
+    implementation "com.google.firebase:firebase-core:$firebase_core_version"
+    implementation "com.google.firebase:firebase-crash:$firebase_crash_version"
+    implementation "com.google.firebase:firebase-database:$firebase_database_version"
+    implementation "com.google.firebase:firebase-auth:$firebase_auth_version"
+
+    // RxJava
+    implementation "io.reactivex.rxjava2:rxjava:$rx_java_version"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rx_kotlin_version"
+
+    // Koin
+    implementation "org.koin:koin-android-architecture:$koin_version"
+    implementation "org.koin:koin-android:$koin_version"
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
+    implementation "androidx.appcompat:appcompat:$app_compat_version"
 }
