@@ -56,9 +56,11 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$support_version"
     implementation "com.android.support.constraint:constraint-layout:$constraint_layout_version"
     implementation "com.android.support:design:$support_version"
+    implementation "com.android.support:multidex:$multidex_version"
 
     // ViewModel and LiveData
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    implementation "android.arch.lifecycle:runtime:1.1.1"
 
     // Firebase
     implementation "com.google.firebase:firebase-core:$firebase_core_version"
@@ -70,10 +72,9 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rx_java_version"
     implementation "io.reactivex.rxjava2:rxkotlin:$rx_kotlin_version"
 
-    // Koin
+    /*// Koin
     implementation "org.koin:koin-android-architecture:$koin_version"
-    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-android:$koin_version"*/
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "androidx.appcompat:appcompat:$app_compat_version"
 }
