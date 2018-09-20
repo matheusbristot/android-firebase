@@ -11,7 +11,9 @@ class MainViewModel(
 ) : BaseViewModel() {
 
     val text: LiveData<String> get() = textLiveData
+    val output: LiveData<String> get() = outputLiveData
     private val textLiveData: MutableLiveData<String> = MutableLiveData()
+    private val outputLiveData: MutableLiveData<String> = MutableLiveData()
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate() {
@@ -36,5 +38,11 @@ class MainViewModel(
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun onDestroy() {
         textLiveData.value = "Ciclo de vida: ON_DESTROY"
+    }
+
+    fun getInputText(text: String?){
+        text?.let {
+            outputLiveData.value = it
+        }
     }
 }
