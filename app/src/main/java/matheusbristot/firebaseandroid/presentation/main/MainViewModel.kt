@@ -6,7 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.OnLifecycleEvent
 import matheusbristot.firebaseandroid.presentation.base.view.BaseViewModel
 
-class MainViewModel(private val name: String) : BaseViewModel() {
+class MainViewModel(
+        private val name: String
+) : BaseViewModel() {
 
     val text: LiveData<String> get() = textLiveData
     private val textLiveData: MutableLiveData<String> = MutableLiveData()
@@ -26,15 +28,13 @@ class MainViewModel(private val name: String) : BaseViewModel() {
         textLiveData.value = "Ciclo de vida: ON_RESUME"
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    fun onPause() {
+        textLiveData.value = "Ciclo de vida: ON_PAUSE"
+    }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun onDestroy() {
         textLiveData.value = "Ciclo de vida: ON_DESTROY"
-    }
-
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-    fun onPause() {
-        textLiveData.value = "Ciclo de vida: ON_PAUSE"
     }
 }
