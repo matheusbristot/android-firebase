@@ -72,6 +72,9 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rx_java_version"
     implementation "io.reactivex.rxjava2:rxkotlin:$rx_kotlin_version"
 
+    // Multidex
+    implementation 'com.android.support:multidex:1.0.3'
+
     /*// Koin
     implementation "org.koin:koin-android-architecture:$koin_version"
     implementation "org.koin:koin-android:$koin_version"*/

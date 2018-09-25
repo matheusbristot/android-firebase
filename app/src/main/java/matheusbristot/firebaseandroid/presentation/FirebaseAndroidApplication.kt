@@ -1,8 +1,6 @@
 package matheusbristot.firebaseandroid.presentation
 
-import android.content.Intent
-import androidx.multidex.MultiDexApplication
-import matheusbristot.firebaseandroid.presentation.main.MainActivity
+import android.support.multidex.MultiDexApplication
 
 class FirebaseAndroidApplication : MultiDexApplication() {
 

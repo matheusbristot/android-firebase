@@ -1,9 +1,8 @@
 package matheusbristot.firebaseandroid.presentation.base.lifecycle
 
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
+import android.arch.lifecycle.LifecycleOwner
+import android.arch.lifecycle.LiveData
 
 fun <T> LiveData<T>.observe(owner: LifecycleOwner, observer: (T?) -> Unit) {
-    observe(owner, Observer { observer(it) })
+    observe(owner, android.arch.lifecycle.Observer { observer(it) })
 }

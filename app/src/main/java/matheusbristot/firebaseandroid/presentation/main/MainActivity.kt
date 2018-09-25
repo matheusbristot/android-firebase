@@ -2,11 +2,11 @@ package matheusbristot.firebaseandroid.presentation.main
 
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
+import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import matheusbristot.firebaseandroid.presentation.R
 import matheusbristot.firebaseandroid.presentation.base.lifecycle.observe
 import matheusbristot.firebaseandroid.presentation.databinding.ActivityMainBinding

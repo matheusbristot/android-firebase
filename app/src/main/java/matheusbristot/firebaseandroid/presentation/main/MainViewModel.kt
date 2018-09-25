@@ -1,9 +1,9 @@
 package matheusbristot.firebaseandroid.presentation.main
 
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.OnLifecycleEvent
+import android.arch.lifecycle.Lifecycle
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.OnLifecycleEvent
+import matheusbristot.firebaseandroid.presentation.base.lifecycle.FlexibleLiveData
 import matheusbristot.firebaseandroid.presentation.base.view.BaseViewModel
 
 class MainViewModel(
@@ -12,8 +12,8 @@ class MainViewModel(
 
     val text: LiveData<String> get() = textLiveData
     val output: LiveData<String> get() = outputLiveData
-    private val textLiveData: MutableLiveData<String> = MutableLiveData()
-    private val outputLiveData: MutableLiveData<String> = MutableLiveData()
+    private val textLiveData: FlexibleLiveData<String> = FlexibleLiveData()
+    private val outputLiveData: FlexibleLiveData<String> = FlexibleLiveData()
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate() {
@@ -40,7 +40,7 @@ class MainViewModel(
         textLiveData.value = "Ciclo de vida: ON_DESTROY"
     }
 
-    fun getInputText(text: String?){
+    fun getInputText(text: String?) {
         text?.let {
             outputLiveData.value = it
         }

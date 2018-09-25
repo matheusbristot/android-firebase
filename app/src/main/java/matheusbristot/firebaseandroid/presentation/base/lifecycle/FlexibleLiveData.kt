@@ -1,6 +1,6 @@
 package matheusbristot.firebaseandroid.presentation.base.lifecycle
 
-import androidx.lifecycle.MutableLiveData
+import android.arch.lifecycle.MutableLiveData
 
 class FlexibleLiveData<T> : MutableLiveData<T>() {
 

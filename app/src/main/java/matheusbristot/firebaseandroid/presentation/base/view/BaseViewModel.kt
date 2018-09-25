@@ -1,8 +1,8 @@
 package matheusbristot.firebaseandroid.presentation.base.view
 
-import androidx.annotation.CallSuper
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.ViewModel
+import android.arch.lifecycle.LifecycleObserver
+import android.arch.lifecycle.ViewModel
+import android.support.annotation.CallSuper
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
