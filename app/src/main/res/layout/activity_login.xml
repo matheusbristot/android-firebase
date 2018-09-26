@@ -73,10 +73,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
             android:background="@drawable/rounded_white_button"
             android:text="@string/global_log_in" />
+
+        <ProgressBar
+            android:id="@+id/status_progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:theme="@style/Light" />
 
     </LinearLayout>
 

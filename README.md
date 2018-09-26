@@ -60,3 +60,81 @@ android:onClick="@{main::onClickText}"
 ```
 
 Viu alguma semelhança? Rsss. Demos um link onClickText no nosso método que vai reproduzir um Toast.
+
+
+## Configurando o Firebase no projeto:
+
+Acesse
+```
+https://console.firebase.google.com/u/0/?hl=pt-br
+```
+
+Clique aqui:
+```
+http://i.imgur.com/BsXHcqC.png
+```
+
+Preencha
+```
+http://i.imgur.com/jV4npfx.png
+```
+
+Resultado:
+```
+http://i.imgur.com/Nqs5IzA.png
+```
+
+Adicionando o Firebase ao App
+Preencha os dados e clique em continuar e aparacerá este resultado:
+```
+http://i.imgur.com/uv0cEJh.png
+http://i.imgur.com/PhlyZxB.png
+```
+Lembre-se de baixar o google-services.json e adicionar no <projecto>/app/
+
+Após isso, adicione isto, no arquivo <projeto>build.gradle, ou melhor, no módulo FirebaseAndroid:
+```
+dependencies {
+    ...
+    classpath "com.google.gms:google-services:$gms_version"
+}
+```
+Agora, vamos colocar isto no build.gradle no nível do App ok? No módulo app
+
+```
+dependencies {
+    ...
+    implementation "com.google.firebase:firebase-core:$firebase_core_version"
+}
+```
+E na última linha do arquivo coloque isto:
+```
+apply plugin: 'com.google.gms.google-services'
+```
+
+Após toda a configuração, você irá colocar isto no onCreate do LoginActivity:
+
+```
+FirebaseApp.initializeApp(this)
+```
+
+Agora no Logcat deverá aparecer algo parecido com isto:
+
+```
+I/FirebaseInitProvider: FirebaseApp initialization successful
+```
+
+Configurar o Firebase Authentication:
+https://console.firebase.google.com/u/0/project/<firebase-project>/authentication/users?hl=pt-br , troque o <firebase-project> pelo id do projeto do firebase que você criou
+
+Você clica em Configurar método de Login
+```
+http://i.imgur.com/Hm4heiP.png
+```
+
+Em Provedores de Login, escolha E-mail/senha e edite:
+Ative a primeira opção, e clique em salvar.
+```
+http://i.imgur.com/VHn5bZh.png
+```
+Pronto authentication configurado
