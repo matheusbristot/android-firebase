@@ -21,6 +21,7 @@ Esta branch é desenvolvida a Main Activity e algumas extensions foram criadas p
 
 - Databinding, saber como inicializar na classe
 - No Databinding ainda, como passar seu callback no xml.
+- ViewModel
 
 ```
 private lateinit var binding: ActivityMainBinding

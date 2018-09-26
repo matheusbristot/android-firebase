@@ -1,14 +1,10 @@
 package matheusbristot.firebaseandroid.presentation.main
 
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.OnLifecycleEvent
-import matheusbristot.firebaseandroid.presentation.base.view.BaseViewModel
+import androidx.lifecycle.*
 
 class MainViewModel(
         private val name: String
-) : BaseViewModel() {
+) : ViewModel(), LifecycleObserver {
 
     val text: LiveData<String> get() = textLiveData
     private val textLiveData: MutableLiveData<String> = MutableLiveData()

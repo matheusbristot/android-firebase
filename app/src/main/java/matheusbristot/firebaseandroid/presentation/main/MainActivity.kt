@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         mainViewModel = MainViewModel("Você esta na MainActivity")
         mainViewModel?.let {
             lifecycle.addObserver(it)
-            it.text.observe(this, ::onText)
+            it.text.observe(this, ::onText) // usamos uma extensions para reduzir o código em toda Activity
         }
     }
 
