@@ -75,9 +75,5 @@ dependencies {
     // Multidex
     implementation 'com.android.support:multidex:1.0.3'
 
-    /*// Koin
-    implementation "org.koin:koin-android-architecture:$koin_version"
-    implementation "org.koin:koin-android:$koin_version"*/
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
