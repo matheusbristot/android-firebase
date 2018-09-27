@@ -9,13 +9,14 @@ buildscript {
         min_sdk_version = 21
         target_version = 28
         version_code = 1
-        version_name = '1.0'
+        version_name = '1.0.0'
 
         // Firebase
         firebase_auth_version = '16.0.3'
         firebase_core_version = '16.0.3'
         firebase_crash_version = '16.2.0'
         firebase_database_version = '16.0.1'
+        firebase_remote_config_version = '16.0.0'
 
         // Others
         app_compat_version = '1.0.0-alpha1'

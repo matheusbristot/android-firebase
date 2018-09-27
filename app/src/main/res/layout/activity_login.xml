@@ -12,10 +12,19 @@
             android:layout_width="match_parent"
             android:layout_height="56sp"
             android:layout_gravity="center"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="16dp"
             android:gravity="center"
             android:text="@string/label_login"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/daily_message_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="56sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:visibility="gone" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/email_text_input_layout"

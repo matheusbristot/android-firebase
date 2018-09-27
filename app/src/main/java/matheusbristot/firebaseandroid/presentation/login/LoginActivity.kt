@@ -6,14 +6,21 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
+import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import matheusbristot.firebaseandroid.presentation.BuildConfig
 import matheusbristot.firebaseandroid.presentation.R
+import matheusbristot.firebaseandroid.presentation.base.REMOTE_APP_VERSION
+import matheusbristot.firebaseandroid.presentation.base.REMOTE_DAILY_MESSAGE
+import matheusbristot.firebaseandroid.presentation.base.REMOTE_FORCE_CHECK_VERSION
 import matheusbristot.firebaseandroid.presentation.base.lifecycle.observe
 import matheusbristot.firebaseandroid.presentation.databinding.ActivityLoginBinding
 
@@ -43,6 +50,17 @@ class LoginActivity : AppCompatActivity() {
         }
         initListenerTextInput()
         initListenerLogInButton()
+        initVerifyBaseVersions()
+        getDailyMessage()
+    }
+
+    private fun getDailyMessage() {
+        FirebaseRemoteConfig.getInstance()?.let { remoteConfig ->
+            remoteConfig.getString(REMOTE_DAILY_MESSAGE)?.let { message ->
+                binding.dailyMessageTextView.visibility = View.VISIBLE
+                binding.dailyMessageTextView.text = message
+            }
+        }
     }
 
     private fun initListenerTextInput() {
@@ -99,5 +117,15 @@ class LoginActivity : AppCompatActivity() {
 
     private fun onGetUser(firUser: FirebaseUser?) {
         firUser?.let { Log.e("onGetUser", it.email) }
+    }
+
+    private fun initVerifyBaseVersions() {
+        val remoteConfig = FirebaseRemoteConfig.getInstance()
+        if (remoteConfig.getBoolean(REMOTE_FORCE_CHECK_VERSION)) {
+            val latestVersion = remoteConfig.getString(REMOTE_APP_VERSION)
+            val currentAppVersion = BuildConfig.VERSION_NAME
+            if (!TextUtils.equals(latestVersion, currentAppVersion))
+                Toast.makeText(this, "Olá! Existe uma atualização pendente", Toast.LENGTH_LONG).show()
+        }
     }
 }

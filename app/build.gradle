@@ -72,6 +72,7 @@ dependencies {
     implementation "com.google.firebase:firebase-crash:$firebase_crash_version"
     implementation "com.google.firebase:firebase-database:$firebase_database_version"
     implementation "com.google.firebase:firebase-auth:$firebase_auth_version"
+    implementation "com.google.firebase:firebase-config:$firebase_remote_config_version"
 
     // Crashlytics
     implementation "com.crashlytics.sdk.android:crashlytics:$crashlytics_version"

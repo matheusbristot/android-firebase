@@ -244,3 +244,54 @@ Ficando assim
 ![alt text](http://i.imgur.com/3uzQznS.png)
 
 ...Se chegou até aqui sem problemas, seu Crashlytics está configurado e verificado.
+
+### Configurar o Firebase Remote Config
+No app/build.gradle adicione este código
+```
+implementation "com.google.firebase:firebase-config:$firebase_remote_config_version"
+```
+De aquele sync now!
+
+Agora, abra o console do firebase e acesse Ampliar -> Remote Config
+
+![alt text](http://i.imgur.com/sgGC4L4.png)
+
+E clique em configurar
+
+Depois disso você está pronto para criar:
+
+Clique em adicionar parâmetro, e preencha os campos:
+
+![alt text](http://i.imgur.com/QqCthts.png)
+
+Agora vamos inicializar o Config Remote através do Application, no projeto existe o arquivo FirebaseAndroidApplication.kt. Abra ele
+Basicamente é um exemplo bem básico, vamos setar valores padrões caso não encontre ao realizar o get em outro lugar
+e setamos também o tempo de atualização, e através do activeFetched o app ativa a configuração de busca que copia valores armazenados nela para a configuração ativa.
+```
+val firebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
+
+        // Aqui você pode colocar itens default antes de ser publicado no Remote Config do Firebase
+        val remoteConfigDefaults = mutableMapOf<String, Any>()
+        remoteConfigDefaults[REMOTE_APP_VERSION] = "1.0.0"
+        remoteConfigDefaults[REMOTE_FORCE_CHECK_VERSION] = false
+        remoteConfigDefaults[REMOTE_DAILY_MESSAGE] = ""
+
+        firebaseRemoteConfig.fetch(60) // a cada minuto vou buscar
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) firebaseRemoteConfig.activateFetched()
+                }.addOnFailureListener { exception -> Crashlytics.logException(exception) }
+    }
+```
+
+Agora vamos buscar os valores que estão no Firebase,
+Primeiramente instanciamos o remote,
+```
+val remoteConfig = FirebaseRemoteConfig.getInstance()
+```
+Agora podemos pegar qualquer valor que estiver no Remote Config, baseado no tipo claro, Boolean escrevemos getBoolean, String escrevemos getString
+Um exemplo:
+```
+val latestVersion = remoteConfig.getString(REMOTE_APP_VERSION)
+```
+
+Se você conseguiu pegar o REMOTE_APP_VERSION, seu Remote Config foi adicionado com sucesso.
