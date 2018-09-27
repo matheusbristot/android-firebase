@@ -138,3 +138,117 @@ Ative a primeira opção, e clique em salvar.
 http://i.imgur.com/VHn5bZh.png
 ```
 Pronto authentication configurado
+
+### Adicionando o Firebase Crashlytics no projeto
+
+Abra o painel do Console Firebase e navegue na até opção de Qualidade e clique em Crashlytics
+```
+http://i.imgur.com/mrPgPeO.png
+```
+
+Geralmente, o Crashlytics é habilitado apenas para versão Release, mas no Workshop, vamos habilitar para o Debug também.
+
+Então selecione o App Debug
+```
+http://i.imgur.com/IkPgZmL.png
+```
+
+Após isso clique em Configurar o Crashlytics
+
+```
+http://i.imgur.com/vMYmvuo.png
+```
+Clique em Next (ou Próximo)
+
+Abra a documentação sugerida no site
+
+Vamos seguir o passo a passo e vamos mudar apenas uma etapa da configuração baseada na documentação beleza?
+
+Passo 1: Coloque esta linha no ciclo de vida onCreate de qualquer View que você vá acessar durante o Workshop, eu coloquei no LoginActivity.kt
+```
+Crashlytics.getInstance().crash()
+```
+
+Passo 2: Agora vamos adicionar no AndroidManifest.xml, do módulo app, para ativação do modo de depuração do Crashlytics
+
+Dentro da tag de <application> coloque isto:
+```
+<meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="@bool/enable_crashlytics" />
+```
+
+Passo 3: Adicionar no app/build.gradle o boolean enable_crashlytics:
+
+Para cada Build Variants você irá adicionar algo semelhante a isso, se você quer habilitar para .debug, .staging, .release
+
+```
+resValue "bool", "enable_crashlytics", "true"
+```
+Se você não quer habilitar para determinada build:
+```
+resValue "bool", "enable_crashlytics", "false"
+```
+
+Passo 4: Ainda no app/build.gradle, vamos adicionar as dependencias para usar o Crashlytics :D
+
+no inicio do arquivo, as primeiras linhas, adicione isto
+```
+apply plugin: 'io.fabric'
+```
+
+E nas dependencias, dentro do bloco dependencies:
+```
+implementation "com.crashlytics.sdk.android:crashlytics:$crashlytics_version"
+```
+
+Passo 5: Agora no <project>/build.gradle vamos adicionar as dependencias:
+Dentro de buildscript { repositories {
+Coloque isso:
+```
+ maven {
+           url 'https://maven.fabric.io/public'
+        }
+```
+
+Agora dentro de buildscript { dependencies {
+Coloque isso:
+```
+classpath "io.fabric.tools:gradle:$fabric_tools_version"
+```
+
+Agora dentro de allproject { repositories {
+Coloque isso:
+```
+maven {
+            url 'https://maven.google.com/'
+        }
+```
+Agora aperte em Sync Now
+
+Quando você fazer todos os passos, e abrir seu app, e entrar na View que irá ocorrer o crash (forçadamente), você deverá receber em instantes um email parecido com isto.
+```
+http://i.imgur.com/hkSSKYJ.png
+```
+
+Acessando o painel de Crash
+```
+http://i.imgur.com/0M1pfw2.png
+```
+
+Abrindo a ocorrência, teremos mais detalhes, como esse exemplo:
+```
+http://i.imgur.com/WvESZ4R.png
+```
+
+Bom após removermos a linha que causa o crash. Devemos fechar o problema.
+```
+http://i.imgur.com/1oxJ7DI.png
+```
+
+Ficando assim
+```
+http://i.imgur.com/3uzQznS.png
+```
+
+...Se chegou até aqui sem problemas, seu Crashlytics está configurado e verificado.

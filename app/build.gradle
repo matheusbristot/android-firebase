@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'io.fabric'
+
 android {
 
     compileOptions {
@@ -35,16 +37,19 @@ android {
             minifyEnabled false
             resValue "string", "app_name", "\"$app_name\""
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            resValue "bool", "enable_crashlytics", "true"
         }
 
         staging {
             applicationIdSuffix ".staging"
             resValue "string", "app_name", "\"$app_name [staging]\""
+            resValue "bool", "enable_crashlytics", "false"
         }
 
         debug {
             applicationIdSuffix ".debug"
             resValue "string", "app_name", "\"$app_name [debug]\""
+            resValue "bool", "enable_crashlytics", "true"
         }
     }
 }
@@ -67,6 +72,9 @@ dependencies {
     implementation "com.google.firebase:firebase-crash:$firebase_crash_version"
     implementation "com.google.firebase:firebase-database:$firebase_database_version"
     implementation "com.google.firebase:firebase-auth:$firebase_auth_version"
+
+    // Crashlytics
+    implementation "com.crashlytics.sdk.android:crashlytics:$crashlytics_version"
 
     // RxJava
     implementation "io.reactivex.rxjava2:rxjava:$rx_java_version"
