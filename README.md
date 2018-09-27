@@ -71,7 +71,7 @@ https://console.firebase.google.com/u/0/?hl=pt-br
 
 Clique aqui:
 ```
-http://i.imgur.com/BsXHcqC.png
+![alt text](http://i.imgur.com/BsXHcqC.png)
 ```
 
 Preencha
