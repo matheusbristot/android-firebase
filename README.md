@@ -70,24 +70,25 @@ https://console.firebase.google.com/u/0/?hl=pt-br
 ```
 
 Clique aqui:
+
 ![alt text](http://i.imgur.com/BsXHcqC.png)
 
-Preencha
-```
-http://i.imgur.com/jV4npfx.png
-```
+Preencha:
+
+![alt text](http://i.imgur.com/jV4npfx.png)
 
 Resultado:
-```
-http://i.imgur.com/Nqs5IzA.png
-```
+
+![alt text](http://i.imgur.com/Nqs5IzA.png)
 
 Adicionando o Firebase ao App
+
 Preencha os dados e clique em continuar e aparacerá este resultado:
-```
-http://i.imgur.com/uv0cEJh.png
-http://i.imgur.com/PhlyZxB.png
-```
+
+![alt text](http://i.imgur.com/uv0cEJh.png)
+
+![alt text](http://i.imgur.com/PhlyZxB.png)
+
 Lembre-se de baixar o google-services.json e adicionar no <projecto>/app/
 
 Após isso, adicione isto, no arquivo <projeto>build.gradle, ou melhor, no módulo FirebaseAndroid:
