@@ -124,39 +124,37 @@ I/FirebaseInitProvider: FirebaseApp initialization successful
 ```
 
 Configurar o Firebase Authentication:
-https://console.firebase.google.com/u/0/project/<firebase-project>/authentication/users?hl=pt-br , troque o <firebase-project> pelo id do projeto do firebase que você criou
+https://console.firebase.google.com/u/0/project/SEU_PROJETO/authentication/users?hl=pt-br
+
+Troque o SEU_PROJETO pelo id do projeto do firebase que você criou
 
 Você clica em Configurar método de Login
-```
-http://i.imgur.com/Hm4heiP.png
-```
+
+![alt text](http://i.imgur.com/Hm4heiP.png)
 
 Em Provedores de Login, escolha E-mail/senha e edite:
 Ative a primeira opção, e clique em salvar.
-```
-http://i.imgur.com/VHn5bZh.png
-```
+
+![alt text](http://i.imgur.com/VHn5bZh.png)
+
 Pronto authentication configurado
 
 ### Adicionando o Firebase Crashlytics no projeto
 
 Abra o painel do Console Firebase e navegue na até opção de Qualidade e clique em Crashlytics
-```
-http://i.imgur.com/mrPgPeO.png
-```
+
+![alt text](http://i.imgur.com/mrPgPeO.png)
 
 Geralmente, o Crashlytics é habilitado apenas para versão Release, mas no Workshop, vamos habilitar para o Debug também.
 
 Então selecione o App Debug
-```
-http://i.imgur.com/IkPgZmL.png
-```
+
+![alt text](http://i.imgur.com/IkPgZmL.png)
 
 Após isso clique em Configurar o Crashlytics
 
-```
-http://i.imgur.com/vMYmvuo.png
-```
+![alt text](http://i.imgur.com/vMYmvuo.png)
+
 Clique em Next (ou Próximo)
 
 Abra a documentação sugerida no site
@@ -180,10 +178,10 @@ Dentro da tag de <application> coloque isto:
 Passo 3: Adicionar no app/build.gradle o boolean enable_crashlytics:
 
 Para cada Build Variants você irá adicionar algo semelhante a isso, se você quer habilitar para .debug, .staging, .release
-
 ```
 resValue "bool", "enable_crashlytics", "true"
 ```
+
 Se você não quer habilitar para determinada build:
 ```
 resValue "bool", "enable_crashlytics", "false"
@@ -191,7 +189,7 @@ resValue "bool", "enable_crashlytics", "false"
 
 Passo 4: Ainda no app/build.gradle, vamos adicionar as dependencias para usar o Crashlytics :D
 
-no inicio do arquivo, as primeiras linhas, adicione isto
+No inicio do arquivo, as primeiras linhas, adicione isto
 ```
 apply plugin: 'io.fabric'
 ```
@@ -226,28 +224,23 @@ maven {
 Agora aperte em Sync Now
 
 Quando você fazer todos os passos, e abrir seu app, e entrar na View que irá ocorrer o crash (forçadamente), você deverá receber em instantes um email parecido com isto.
-```
-http://i.imgur.com/hkSSKYJ.png
-```
+
+![alt text](http://i.imgur.com/hkSSKYJ.png)
 
 Acessando o painel de Crash
-```
-http://i.imgur.com/0M1pfw2.png
-```
+
+![alt text](http://i.imgur.com/0M1pfw2.png)
 
 Abrindo a ocorrência, teremos mais detalhes, como esse exemplo:
-```
-http://i.imgur.com/WvESZ4R.png
-```
+
+![alt text](http://i.imgur.com/WvESZ4R.png)
 
 Bom após removermos a linha que causa o crash. Devemos fechar o problema.
-```
-http://i.imgur.com/1oxJ7DI.png
-```
+
+![alt text](http://i.imgur.com/1oxJ7DI.png)
 
 Ficando assim
-```
-http://i.imgur.com/3uzQznS.png
-```
+
+![alt text](http://i.imgur.com/3uzQznS.png)
 
 ...Se chegou até aqui sem problemas, seu Crashlytics está configurado e verificado.
