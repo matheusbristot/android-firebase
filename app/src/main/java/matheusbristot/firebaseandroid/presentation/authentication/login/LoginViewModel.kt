@@ -1,4 +1,4 @@
-package matheusbristot.firebaseandroid.presentation.login
+package matheusbristot.firebaseandroid.presentation.authentication.login
 
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LiveData
@@ -9,6 +9,7 @@ import com.google.firebase.auth.FirebaseUser
 import matheusbristot.firebaseandroid.presentation.base.lifecycle.FlexibleLiveData
 import matheusbristot.firebaseandroid.presentation.base.view.BaseViewModel
 
+@Deprecated("Deprecated not used more", ReplaceWith("AuthenticationViewModel"))
 class LoginViewModel(
         private val firebaseAuth: FirebaseAuth
 ) : BaseViewModel() {
@@ -36,7 +37,7 @@ class LoginViewModel(
                                 shouldProgressLiveData.value = false // remove o loading
                             }.addOnFailureListener { exception ->
                                 // Deu erro, e vai processar a mensagem
-                                errorLiveData.value = LoginErrorType.getError(exception)
+                                errorLiveData.value = LoginErrorType.getErrorMessage(exception)
                                 shouldProgressLiveData.value = false // remove o loading
                             }
                 } else {

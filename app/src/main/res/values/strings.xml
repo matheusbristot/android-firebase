@@ -2,5 +2,6 @@
     <string name="label_login">Bem vindo ao primeiro App</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Senha</string>
+    <string name="hint_confirm_password">Confirme sua senha</string>
     <string name="global_log_in">Entrar</string>
 </resources>

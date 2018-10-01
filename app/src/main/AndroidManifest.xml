@@ -29,7 +29,12 @@
         </activity>
 
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".authentication.login.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".authentication.register.RegisterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

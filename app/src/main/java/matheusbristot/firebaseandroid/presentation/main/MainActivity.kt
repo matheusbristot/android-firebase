@@ -12,7 +12,7 @@ import android.widget.Toast
 import matheusbristot.firebaseandroid.presentation.R
 import matheusbristot.firebaseandroid.presentation.base.lifecycle.observe
 import matheusbristot.firebaseandroid.presentation.databinding.ActivityMainBinding
-import matheusbristot.firebaseandroid.presentation.login.LoginActivity
+import matheusbristot.firebaseandroid.presentation.authentication.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
 
