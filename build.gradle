@@ -26,7 +26,6 @@ buildscript {
         gms_version = '4.0.1'
         gradle_version = '3.1.4'
         kotlin_version = '1.2.60'
-        kotlin_version = '1.2.50'
         lifecycle_version = '1.1.1'
         multidex_version = '1.0.3'
         rx_java_version = '2.2.1'
