@@ -8,18 +8,17 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import matheusbristot.firebaseandroid.presentation.authentication.login.LoginErrorType
 import matheusbristot.firebaseandroid.presentation.authentication.register.RegisterErrorType
+import matheusbristot.firebaseandroid.presentation.base.EMAIL_REGEX
 import matheusbristot.firebaseandroid.presentation.base.lifecycle.FlexibleLiveData
 import matheusbristot.firebaseandroid.presentation.base.view.BaseViewModel
 
 class AuthenticationViewModel(private val firebaseAuth: FirebaseAuth) : BaseViewModel() {
 
     val userLogged: LiveData<FirebaseUser> get() = userLoggedLiveData
-    val userRegistered: LiveData<FirebaseUser> get() = userRegisteredLiveData
     val error: LiveData<String> get() = errorLiveData
     val shouldProgress: LiveData<Boolean> get() = shouldProgressLiveData
 
     private val userLoggedLiveData: FlexibleLiveData<FirebaseUser> = FlexibleLiveData()
-    private val userRegisteredLiveData: FlexibleLiveData<FirebaseUser> = FlexibleLiveData()
     private val errorLiveData: FlexibleLiveData<String> = FlexibleLiveData()
     private val shouldProgressLiveData: FlexibleLiveData<Boolean> = FlexibleLiveData.default(false)
 
@@ -50,13 +49,15 @@ class AuthenticationViewModel(private val firebaseAuth: FirebaseAuth) : BaseView
             password?.let {
                 confirmationPassword?.let {
                     if (email.isNotBlank() && password.isNotBlank() && confirmationPassword.isNotBlank()) {
-                        if (password != confirmationPassword) {
+                        if (!email.matches(Regex(EMAIL_REGEX))) {
+                            errorLiveData.value = "E-mail inválido, por favor verifique o campo"
+                        } else if (password != confirmationPassword) {
                             errorLiveData.value = "Senhas não correspondem, por favor verifique os campos"
                         } else {
                             shouldProgressLiveData.value = true // mostra o loading
                             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                                 //Deu certo encontrou o usuário no nosso banco
-                                if (it.isSuccessful) userRegisteredLiveData.value = it.result.user
+                                if (it.isSuccessful) signIn(email, password)
                                 shouldProgressLiveData.value = false // remove o loading
                             }.addOnFailureListener { exception ->
                                 // Deu erro, e vai processar a mensagem

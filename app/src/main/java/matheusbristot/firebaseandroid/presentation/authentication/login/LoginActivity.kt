@@ -1,14 +1,11 @@
 package matheusbristot.firebaseandroid.presentation.authentication.login
 
-import android.app.Activity
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
@@ -21,10 +18,11 @@ import matheusbristot.firebaseandroid.presentation.base.REMOTE_APP_VERSION
 import matheusbristot.firebaseandroid.presentation.base.REMOTE_DAILY_MESSAGE
 import matheusbristot.firebaseandroid.presentation.base.REMOTE_FORCE_CHECK_VERSION
 import matheusbristot.firebaseandroid.presentation.base.lifecycle.observe
+import matheusbristot.firebaseandroid.presentation.base.view.BaseActivity
 import matheusbristot.firebaseandroid.presentation.databinding.ActivityLoginBinding
 
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity(true) {
 
     private lateinit var binding: ActivityLoginBinding
 
@@ -50,6 +48,7 @@ class LoginActivity : AppCompatActivity() {
         initListenerLogInButton()
         initVerifyBaseVersions()
         getDailyMessage()
+        setToolbar(binding.toolbar)
     }
 
     private fun getDailyMessage() {
@@ -64,7 +63,7 @@ class LoginActivity : AppCompatActivity() {
     private fun initListenerLogInButton() {
         viewModel?.let { authModel ->
             binding.logInButton.setOnClickListener {
-                (getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager).apply { toggleSoftInput(InputMethodManager.RESULT_HIDDEN, 0) }
+                hideSoftKeyboard()
                 authModel.signIn(binding.emailTextInputEditText.text.toString(), binding.passwordTextInputEditText.text.toString())
             }
         }

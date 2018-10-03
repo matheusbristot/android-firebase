@@ -8,9 +8,7 @@ class MainViewModel(
 ) : ViewModel(), LifecycleObserver {
 
     val text: LiveData<String> get() = textLiveData
-    val output: LiveData<String> get() = outputLiveData
     private val textLiveData: FlexibleLiveData<String> = FlexibleLiveData()
-    private val outputLiveData: FlexibleLiveData<String> = FlexibleLiveData()
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate() {
@@ -35,11 +33,5 @@ class MainViewModel(
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun onDestroy() {
         textLiveData.value = "Ciclo de vida: ON_DESTROY"
-    }
-
-    fun getInputText(text: String?) {
-        text?.let {
-            outputLiveData.value = it
-        }
     }
 }

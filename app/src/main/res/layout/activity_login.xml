@@ -5,24 +5,31 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
+        android:background="@color/lightBackground"
         android:orientation="vertical">
 
-        <TextView
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="56sp"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:text="@string/label_login"
-            android:textStyle="bold" />
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_arrow_back_white"
+            app:title="@string/label_login"
+            app:titleTextColor="@color/lightText" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="24dp"
+            android:background="@color/lightText" />
 
         <TextView
             android:id="@+id/daily_message_text_view"
             android:layout_width="match_parent"
             android:layout_height="56sp"
             android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
             android:gravity="center"
+            android:textColor="@color/lightText"
             android:textStyle="bold"
             android:visibility="gone" />
 
@@ -83,8 +90,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:background="@drawable/rounded_white_button"
-            android:text="@string/global_log_in" />
+            android:background="@drawable/rounded_button"
+            android:text="@string/global_log_in"
+            android:textColor="@color/lightText" />
 
         <ProgressBar
             android:id="@+id/status_progress_bar"

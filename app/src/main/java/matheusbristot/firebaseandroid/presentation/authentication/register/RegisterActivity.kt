@@ -1,22 +1,20 @@
 package matheusbristot.firebaseandroid.presentation.authentication.register
 
-import android.app.Activity
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import matheusbristot.firebaseandroid.presentation.R
 import matheusbristot.firebaseandroid.presentation.authentication.AuthenticationViewModel
 import matheusbristot.firebaseandroid.presentation.base.lifecycle.observe
+import matheusbristot.firebaseandroid.presentation.base.view.BaseActivity
 import matheusbristot.firebaseandroid.presentation.databinding.ActivityRegisterBinding
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : BaseActivity() {
 
     private var authenticationViewModel: AuthenticationViewModel? = null
 
@@ -31,7 +29,7 @@ class RegisterActivity : AppCompatActivity() {
                     authenticationViewModel = model
                     authenticationViewModel?.let {
                         lifecycle.addObserver(it)
-                        it.userRegistered.observe(this, ::onUserRegistered)
+                        it.userLogged.observe(this, ::onUserRegistered)
                         it.error.observe(this, ::onGetError)
                         it.shouldProgress.observe(this, ::onVisible)
                     }
@@ -39,12 +37,13 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
         initListenerLogInButton()
+        setToolbar(binding.toolbar)
     }
 
     private fun initListenerLogInButton() {
         authenticationViewModel?.let { authModel ->
             binding.logInButton.setOnClickListener {
-                (getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager).apply { toggleSoftInput(InputMethodManager.RESULT_HIDDEN, 0) }
+                hideSoftKeyboard()
                 authModel.createUser(binding.emailTextInputEditText.text.toString(), binding.passwordTextInputEditText.text.toString(), binding.confirmPasswordTextInputEditText.text.toString())
             }
         }
