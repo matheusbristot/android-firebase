@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="main"
+            type="matheusbristot.firebaseandroid.presentation.main.MainActivity" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/ic_gdg_cg_logo" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/go_to_login_button"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/rounded_button"
+                android:padding="8dp"
+                android:text="LOGIN"
+                android:textColor="@color/lightText" />
+
+            <Button
+                android:id="@+id/go_to_register_button"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/rounded_button"
+                android:padding="8dp"
+                android:text="Criar conta"
+                android:textColor="@color/lightText" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/first_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{main::onClickText}" />
+
+    </LinearLayout>
+
+
+</layout>
