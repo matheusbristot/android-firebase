@@ -1,9 +1,9 @@
 package matheusbristot.firebaseandroid.presentation.authentication.register
 
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.util.Log
 import android.view.View
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
@@ -12,6 +12,7 @@ import matheusbristot.firebaseandroid.presentation.R
 import matheusbristot.firebaseandroid.presentation.authentication.AuthenticationViewModel
 import matheusbristot.firebaseandroid.presentation.base.lifecycle.observe
 import matheusbristot.firebaseandroid.presentation.base.view.BaseActivity
+import matheusbristot.firebaseandroid.presentation.dashboard.DashboardActivity
 import matheusbristot.firebaseandroid.presentation.databinding.ActivityRegisterBinding
 
 class RegisterActivity : BaseActivity() {
@@ -56,7 +57,11 @@ class RegisterActivity : BaseActivity() {
     }
 
     private fun onUserRegistered(firUser: FirebaseUser?) {
-        firUser?.let { Log.e("onGetUser", it.email) }
+        firUser?.let {
+            startActivity(Intent(this, DashboardActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP))
+            finish()
+        }
     }
 
     private fun onGetError(error: String?) {

@@ -1,9 +1,12 @@
 <resources>
     <string name="label_login">Faça login</string>
+    <string name="label_dashboard">GDG - Eventos</string>
     <string name="label_sign_up">Crie sua conta</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Senha</string>
     <string name="hint_confirm_password">Confirme sua senha</string>
+    <string name="label_detail">Detalhes do Evento</string>
     <string name="global_log_in">Entrar</string>
     <string name="global_sign_up">Criar conta</string>
+    <string name="global_wait">Aguarde</string>
 </resources>

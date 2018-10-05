@@ -1,10 +1,10 @@
 package matheusbristot.firebaseandroid.presentation.authentication.login
 
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.FirebaseApp
@@ -19,6 +19,7 @@ import matheusbristot.firebaseandroid.presentation.base.REMOTE_DAILY_MESSAGE
 import matheusbristot.firebaseandroid.presentation.base.REMOTE_FORCE_CHECK_VERSION
 import matheusbristot.firebaseandroid.presentation.base.lifecycle.observe
 import matheusbristot.firebaseandroid.presentation.base.view.BaseActivity
+import matheusbristot.firebaseandroid.presentation.dashboard.DashboardActivity
 import matheusbristot.firebaseandroid.presentation.databinding.ActivityLoginBinding
 
 
@@ -82,7 +83,12 @@ class LoginActivity : BaseActivity(true) {
     }
 
     private fun onGetUser(firUser: FirebaseUser?) {
-        firUser?.let { Log.e("onGetUser", it.email) }
+        firUser?.let {
+            startActivity(Intent(this, DashboardActivity::class.java)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP))
+            finish()
+        }
     }
 
     private fun initVerifyBaseVersions() {
