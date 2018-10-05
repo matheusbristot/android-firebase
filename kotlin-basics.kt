@@ -16,9 +16,9 @@ class IWantToKnow {
                  */
                 val theReturn = hero.run {
                     print("Hi! my name is $name and my super power is $power")
-                    "Hello! i am the return of the function"
+                    " -> Hello! i am the return of the function"
                 }
-                print(theReturn)
+                println(theReturn)
             }
             Function.APPLY -> {
                 /**
@@ -28,7 +28,7 @@ class IWantToKnow {
                     print("$name: SMAAAASHHHH >:(")
                     "I am the last object, but i'll not be returned :( justice NOW!!"
                 }
-                print(theReturn)
+                println(" -> $theReturn")
             }
             Function.WITH -> {
                 /**
@@ -36,7 +36,7 @@ class IWantToKnow {
                  * is GLOBAL <3
                  */
                 with(hero) {
-                    print("$name: with big powers come big responsibilities")
+                    println("$name: with big powers come big responsibilities")
                 }
             }
             Function.LET -> {
@@ -48,38 +48,130 @@ class IWantToKnow {
                  */
                 val theReturn = hero.let { myAmazingHero ->
                     print(myAmazingHero.name)
-                    "hello! thank you to return myself <3"
+                    " -> hello! thank you to return myself <3"
                 }
-                print(theReturn)
+                println(theReturn)
             }
             Function.ALSO -> {
                 /**
                  * same thing of LET, but don't return nothing
                  */
                 val theReturn = hero.also {
-                    print(it.name)
+                    println(it.name)
                 }
-                print(theReturn)
+                println(theReturn)
+            }
+        }
+    }
+
+    /**
+     * CHAPTER II -> KOTLIN IN: USING THIS FUNCTIONS TO THE DARK SIDE >:)
+     */
+    fun theMysteriousHero(mysteriousHero: MysteriousHero?) {
+        var mysteriousHero = mysteriousHero
+        /**
+         * this block will be executed like a charm
+         */
+        mysteriousHero?.apply {
+            println(name)
+            println(power)
+        }
+        /**
+         * iron man is death now!
+         */
+        mysteriousHero = null
+
+        mysteriousHero?.apply {
+            /**
+             * theese lines will not be runned
+             */
+            println(name)
+            println(power)
+        }
+
+        /**
+         * in java, will be like this
+         */
+        if (mysteriousHero != null) {
+            println(mysteriousHero.name)
+            println(mysteriousHero.power)
+        }
+
+        /**
+         * not so good... :(
+         * so.... use the dark side power that kotlin provides for you! :D
+         */
+    }
+
+    fun combineOperators(mysteriousHero: MysteriousHero?) {
+        /**
+         * Kotlin version
+         */
+        mysteriousHero?.apply {
+            name?.run { capitalize() }?.also { it.toUpperCase() }
+            power?.let {
+                it.toCharArray()
+                        .map { it.toUpperCase() }
+                        .also {
+                            println("Kotlin Version: $it") }
+            }
+        }
+
+        /**
+         * Java version
+         */
+
+        if (mysteriousHero != null) {
+            if (mysteriousHero.name != null) {
+                val capitalizedName = mysteriousHero.name!!.capitalize()
+                capitalizedName.toUpperCase()
+            }
+            val chars: MutableList<Char> = mutableListOf()
+            if (mysteriousHero.power != null) {
+                for (item in mysteriousHero.power!!.toCharArray()) {
+                    chars.add(item.toUpperCase())
+                }
+                print("Java Version: $chars")
             }
         }
     }
 }
 
-/**
- * CHAPTER II -> KOTLIN IN: USING THIS FUNCTIONS TO THE DARK SIDE >:)
- */
 
+fun main(args: Array<String>) {
+    val knowledge = IWantToKnow()
+    /**
+     * Joking with operators, just uncomment
+     */
+//    with(knowledge) {
+//        displayHeroWith(Function.APPLY, Hero("Hulk", "SMASH"))
+//        displayHeroWith(Function.RUN, Hero("Thor", "be a god"))
+//        displayHeroWith(Function.LET, Hero("Hulk", "SMASH"))
+//        displayHeroWith(Function.WITH, Hero("Spider - man", "force and also the webs"))
+//    }
 
+    /**
+     * Same results, but different implementations, just uncomment
+     */
+//    knowledge.combineOperators(MysteriousHero("Captain America", "shield and force"))
+
+    /**
+     * only showing one of the usability of these operators, just uncomment
+     */
+
+//    knowledge.theMysteriousHero(MysteriousHero("Iron man", "money"))
+
+}
 
 /**
  * A Simple class to represent us MARVEL heroes
  */
-class Hero(val name: String, val power: String)
+class Hero(var name: String, var power: String)
 
 /**
  * WHY MYSTERIOUS?! this object can have NULL values. so we can know or not the name or power of a hero
  */
-class AnMysteriousHero(val name: String?, val power: String?)
+class MysteriousHero(var name: String?, var power: String?)
 
 /**
  * An enum to choose which function will run
